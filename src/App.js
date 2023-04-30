@@ -1,14 +1,10 @@
 import './App.css';
-import EducationExperienceForm from './components/EducationExperienceForm';
-import PersonalInfoForm from './components/PersonalInfoForm'
-import WorkExperienceForm from './components/WorkExperienceForm';
+import InputForm from './components/InputForm';
 
 function App() {
   return (
     <div className="App">
-      <PersonalInfoForm />
-      <WorkExperienceForm />
-      <EducationExperienceForm />
+      <InputForm />
     </div>
   );
 }
