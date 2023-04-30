@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PersonalInfoFormCSS from '../styles/PersonalInfoForm.module.css'
 
 export default class PersonalInfoForm extends Component {
     constructor(props) {
@@ -8,7 +9,7 @@ export default class PersonalInfoForm extends Component {
     render() {
         return (
             <div>
-                <div>Personal Info</div>
+                <div className={PersonalInfoFormCSS.formHeader}>Personal Info</div>
                 <form>
                     <label htmlFor="firstName">First Name:</label>
                     <input type="text" id="firstName"></input>
