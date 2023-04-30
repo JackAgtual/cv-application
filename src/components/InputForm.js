@@ -9,10 +9,11 @@ export default class InputForm extends Component {
     }
 
     render() {
+        const { personalInfo, handleChange } = this.props
         return (
             <div>
                 <div className="formHeader">Personal Info</div>
-                <PersonalInfoForm />
+                <PersonalInfoForm personalInfo={personalInfo} handleChange={handleChange} />
                 <div className="formHeader">Work Experience</div>
                 <WorkExperienceForm />
                 <div className="formHeader">Education Experience</div>
