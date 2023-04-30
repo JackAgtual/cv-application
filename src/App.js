@@ -1,12 +1,17 @@
+import React, { Component } from "react"
 import './App.css';
 import InputForm from './components/InputForm';
 
-function App() {
-  return (
-    <div className="App">
-      <InputForm />
-    </div>
-  );
-}
+export default class App extends Component {
+  constructor() {
+    super()
+  }
 
-export default App;
+  render() {
+    return (
+      <div className="App" >
+        <InputForm />
+      </div>
+    )
+  }
+}
