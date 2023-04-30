@@ -14,14 +14,29 @@ export default class PersonalInfoForm extends Component {
                     type="text"
                     id="firstName"
                     value={personalInfo.firstName}
-                    onChange={handleChange}
+                    onChange={(e) => handleChange(e, 'firstName')}
                 />
                 <label htmlFor="lastName">Last Name:</label>
-                <input type="text" id="lastName" value={personalInfo.lastName}></input>
+                <input
+                    type="text"
+                    id="lastName"
+                    value={personalInfo.lastName}
+                    onChange={(e) => handleChange(e, 'lastName')}
+                />
                 <label htmlFor="email">Email:</label>
-                <input type="email" id="email" value={personalInfo.email}></input>
+                <input
+                    type="email"
+                    id="email"
+                    value={personalInfo.email}
+                    onChange={(e) => handleChange(e, 'email')}
+                />
                 <label htmlFor="phoneNumber">Phone Number:</label>
-                <input type="tel" id="phoneNumber" value={personalInfo.phoneNumber}></input>
+                <input
+                    type="tel"
+                    id="phoneNumber"
+                    value={personalInfo.phoneNumber}
+                    onChange={(e) => handleChange(e, 'phoneNumber')}
+                />
             </form>
         )
     }
