@@ -11,8 +11,11 @@ export default class InputForm extends Component {
     render() {
         return (
             <div>
+                <div className="formHeader">Personal Info</div>
                 <PersonalInfoForm />
+                <div className="formHeader">Work Experience</div>
                 <WorkExperienceForm />
+                <div className="formHeader">Education Experience</div>
                 <EducationExperienceForm />
             </div>
         )

@@ -7,20 +7,16 @@ export default class PersonalInfoForm extends Component {
 
     render() {
         return (
-            <div>
-                <div className="formHeader">Personal Info</div>
-                <form>
-                    <label htmlFor="firstName">First Name:</label>
-                    <input type="text" id="firstName"></input>
-                    <label htmlFor="lastName">Last Name:</label>
-                    <input type="text" id="lastName"></input>
-                    <label htmlFor="email">Email:</label>
-                    <input type="email" id="email"></input>
-                    <label htmlFor="phoneNumber">Phone Number:</label>
-                    <input type="tel" id="phoneNumber"></input>
-                </form>
-            </div >
-
+            <form>
+                <label htmlFor="firstName">First Name:</label>
+                <input type="text" id="firstName"></input>
+                <label htmlFor="lastName">Last Name:</label>
+                <input type="text" id="lastName"></input>
+                <label htmlFor="email">Email:</label>
+                <input type="email" id="email"></input>
+                <label htmlFor="phoneNumber">Phone Number:</label>
+                <input type="tel" id="phoneNumber"></input>
+            </form>
         )
     }
 }
