@@ -15,7 +15,8 @@ export default class App extends Component {
         email: '',
         phoneNumber: ''
       },
-      workExperience: []
+      workExperience: [],
+      educationExperience: []
     }
 
     this.handlePersonalInfoChange = this.handlePersonalInfoChange.bind(this)
@@ -44,19 +45,29 @@ export default class App extends Component {
       break
     }
     this.setState(newState)
-    console.log(newState)
   }
 
   addExperienceOfType(experienceType) {
     const newState = _.cloneDeep(this.state)
-    newState[experienceType].push({
-      id: uniqid(),
-      title: '',
-      company: '',
-      from: '',
-      to: '',
-      description: ''
-    })
+
+    if (experienceType === 'workExperience') {
+      newState[experienceType].push({
+        id: uniqid(),
+        title: '',
+        company: '',
+        from: '',
+        to: '',
+        description: ''
+      })
+    } else if (experienceType === 'educationExperience') {
+      newState[experienceType].push({
+        id: uniqid(),
+        school: '',
+        degree: '',
+        completionDate: ''
+      })
+    } else console.error(`Invalid experience type: ${experienceType}`)
+
     this.setState(newState)
   }
 
@@ -67,17 +78,19 @@ export default class App extends Component {
   }
 
   render() {
-    const { personalInfo, workExperience } = this.state
+    const { personalInfo, workExperience, educationExperience } = this.state
     return (
       <div className="App" >
         <InputForm
           personalInfo={personalInfo}
           handlePersonalInfoChange={this.handlePersonalInfoChange}
           workExperience={workExperience}
+          educationExperience={educationExperience}
           handleExperienceChange={this.handleExperienceChange}
           addExperienceOfType={this.addExperienceOfType}
           deleteExperienceOfType={this.deleteExperienceOfType}
           workExperienceType={'workExperience'}
+          educationExperienceType={'educationExperience'}
         />
       </div>
     )

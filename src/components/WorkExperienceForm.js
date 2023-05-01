@@ -47,7 +47,7 @@ export default class WorkExperienceForm extends Component {
                         onChange={(e) => handleChange(e, experienceType, 'description')}
                     />
                 </form>
-                <button onClick={() => deleteEntry(experience.id)}>Delete</button>
+                <button onClick={() => deleteEntry(experienceType, experience.id)}>Delete</button>
             </div>
         )
     }
