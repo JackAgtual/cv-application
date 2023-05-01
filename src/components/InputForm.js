@@ -9,13 +9,23 @@ export default class InputForm extends Component {
     }
 
     render() {
-        const { personalInfo, handleChange } = this.props
+        const {
+            personalInfo,
+            handlePersonalInfoChange,
+            workExperience,
+            handleWorkExperienceChange
+        } = this.props
+
         return (
             <div>
                 <div className="formHeader">Personal Info</div>
-                <PersonalInfoForm personalInfo={personalInfo} handleChange={handleChange} />
+                <PersonalInfoForm personalInfo={personalInfo} handleChange={handlePersonalInfoChange} />
                 <div className="formHeader">Work Experience</div>
-                <WorkExperienceForm />
+                {workExperience.map(entry => <WorkExperienceForm
+                    key={entry.id}
+                    experience={entry}
+                    handleChange={handleWorkExperienceChange}
+                />)}
                 <div className="formHeader">Education Experience</div>
                 <EducationExperienceForm />
             </div>

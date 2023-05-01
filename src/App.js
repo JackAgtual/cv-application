@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import './App.css';
 import InputForm from './components/InputForm';
 import _ from 'lodash'
+import uniqid from 'uniqid'
 
 export default class App extends Component {
   constructor() {
@@ -13,10 +14,21 @@ export default class App extends Component {
         lastName: '',
         email: '',
         phoneNumber: ''
-      }
+      },
+      workExperience: [
+        {
+          id: uniqid(),
+          title: '',
+          company: '',
+          from: '',
+          to: '',
+          description: ''
+        },
+      ]
     }
 
     this.handlePersonalInfoChange = this.handlePersonalInfoChange.bind(this)
+    this.handleWorkExperienceChange = this.handleWorkExperienceChange.bind(this)
   }
 
   handlePersonalInfoChange(e, prop) {
@@ -25,11 +37,32 @@ export default class App extends Component {
     this.setState(newState)
   }
 
+  handleWorkExperienceChange(e, prop) {
+    const newState = _.cloneDeep(this.state)
+
+    // find correct exprience to edit (get correct id)
+    const id = e.target.parentElement.dataset.id
+    for (let i = 0; i < newState.workExperience.length; i++) {
+
+      if (newState.workExperience[i].id !== id) continue // only edit current id
+
+      // update state
+      newState.workExperience[i][prop] = e.target.value
+      break
+    }
+    this.setState(newState)
+  }
+
   render() {
-    const { personalInfo } = this.state
+    const { personalInfo, workExperience } = this.state
     return (
       <div className="App" >
-        <InputForm personalInfo={personalInfo} handleChange={this.handlePersonalInfoChange} />
+        <InputForm
+          personalInfo={personalInfo}
+          handlePersonalInfoChange={this.handlePersonalInfoChange}
+          workExperience={workExperience}
+          handleWorkExperienceChange={this.handleWorkExperienceChange}
+        />
         <div>{personalInfo.firstName}</div>
         <div>{personalInfo.lastName}</div>
         <div>{personalInfo.email}</div>
