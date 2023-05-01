@@ -19,6 +19,9 @@ export default class App extends Component {
       educationExperience: []
     }
 
+    this.workExperienceType = 'workExperience'
+    this.educationExperienceType = 'educationExperience'
+
     this.handlePersonalInfoChange = this.handlePersonalInfoChange.bind(this)
     this.handleExperienceChange = this.handleExperienceChange.bind(this)
     this.addExperienceOfType = this.addExperienceOfType.bind(this)
@@ -50,7 +53,7 @@ export default class App extends Component {
   addExperienceOfType(experienceType) {
     const newState = _.cloneDeep(this.state)
 
-    if (experienceType === 'workExperience') {
+    if (experienceType === this.workExperienceType) {
       newState[experienceType].push({
         id: uniqid(),
         title: '',
@@ -59,7 +62,7 @@ export default class App extends Component {
         to: '',
         description: ''
       })
-    } else if (experienceType === 'educationExperience') {
+    } else if (experienceType === this.educationExperienceType) {
       newState[experienceType].push({
         id: uniqid(),
         school: '',
@@ -89,8 +92,8 @@ export default class App extends Component {
           handleExperienceChange={this.handleExperienceChange}
           addExperienceOfType={this.addExperienceOfType}
           deleteExperienceOfType={this.deleteExperienceOfType}
-          workExperienceType={'workExperience'}
-          educationExperienceType={'educationExperience'}
+          workExperienceType={this.workExperienceType}
+          educationExperienceType={this.educationExperienceType}
         />
       </div>
     )
