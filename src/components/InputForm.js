@@ -13,7 +13,8 @@ export default class InputForm extends Component {
             personalInfo,
             handlePersonalInfoChange,
             workExperience,
-            handleWorkExperienceChange
+            handleWorkExperienceChange,
+            addWorkExperience
         } = this.props
 
         return (
@@ -26,6 +27,7 @@ export default class InputForm extends Component {
                     experience={entry}
                     handleChange={handleWorkExperienceChange}
                 />)}
+                <button onClick={addWorkExperience}>Add Work Experience</button>
                 <div className="formHeader">Education Experience</div>
                 <EducationExperienceForm />
             </div>

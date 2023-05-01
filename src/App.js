@@ -15,20 +15,12 @@ export default class App extends Component {
         email: '',
         phoneNumber: ''
       },
-      workExperience: [
-        {
-          id: uniqid(),
-          title: '',
-          company: '',
-          from: '',
-          to: '',
-          description: ''
-        },
-      ]
+      workExperience: []
     }
 
     this.handlePersonalInfoChange = this.handlePersonalInfoChange.bind(this)
     this.handleWorkExperienceChange = this.handleWorkExperienceChange.bind(this)
+    this.addWorkExperience = this.addWorkExperience.bind(this)
   }
 
   handlePersonalInfoChange(e, prop) {
@@ -53,6 +45,19 @@ export default class App extends Component {
     this.setState(newState)
   }
 
+  addWorkExperience() {
+    const newState = _.cloneDeep(this.state)
+    newState.workExperience.push({
+      id: uniqid(),
+      title: '',
+      company: '',
+      from: '',
+      to: '',
+      description: ''
+    })
+    this.setState(newState)
+  }
+
   render() {
     const { personalInfo, workExperience } = this.state
     return (
@@ -62,6 +67,7 @@ export default class App extends Component {
           handlePersonalInfoChange={this.handlePersonalInfoChange}
           workExperience={workExperience}
           handleWorkExperienceChange={this.handleWorkExperienceChange}
+          addWorkExperience={this.addWorkExperience}
         />
         <div>{personalInfo.firstName}</div>
         <div>{personalInfo.lastName}</div>
