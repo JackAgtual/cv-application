@@ -77,10 +77,6 @@ export default class App extends Component {
           addWorkExperience={this.addWorkExperience}
           deleteWorkExperience={this.deleteWorkExperience}
         />
-        <div>{personalInfo.firstName}</div>
-        <div>{personalInfo.lastName}</div>
-        <div>{personalInfo.email}</div>
-        <div>{personalInfo.phoneNumber}</div>
       </div>
     )
   }
