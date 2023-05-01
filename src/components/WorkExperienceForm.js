@@ -6,7 +6,7 @@ export default class WorkExperienceForm extends Component {
     }
 
     render() {
-        const { experience, handleChange } = this.props
+        const { experience, handleChange, deleteEntry } = this.props
 
         return (
             <div>
@@ -47,7 +47,7 @@ export default class WorkExperienceForm extends Component {
                         onChange={(e) => handleChange(e, 'description')}
                     />
                 </form>
-                <button>Delete</button>
+                <button onClick={() => deleteEntry(experience.id)}>Delete</button>
             </div>
         )
     }

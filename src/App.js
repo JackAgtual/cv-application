@@ -21,6 +21,7 @@ export default class App extends Component {
     this.handlePersonalInfoChange = this.handlePersonalInfoChange.bind(this)
     this.handleWorkExperienceChange = this.handleWorkExperienceChange.bind(this)
     this.addWorkExperience = this.addWorkExperience.bind(this)
+    this.deleteWorkExperience = this.deleteWorkExperience.bind(this)
   }
 
   handlePersonalInfoChange(e, prop) {
@@ -58,6 +59,12 @@ export default class App extends Component {
     this.setState(newState)
   }
 
+  deleteWorkExperience(id) {
+    const newState = _.cloneDeep(this.state)
+    newState.workExperience = newState.workExperience.filter(experience => experience.id !== id)
+    this.setState(newState)
+  }
+
   render() {
     const { personalInfo, workExperience } = this.state
     return (
@@ -68,6 +75,7 @@ export default class App extends Component {
           workExperience={workExperience}
           handleWorkExperienceChange={this.handleWorkExperienceChange}
           addWorkExperience={this.addWorkExperience}
+          deleteWorkExperience={this.deleteWorkExperience}
         />
         <div>{personalInfo.firstName}</div>
         <div>{personalInfo.lastName}</div>
