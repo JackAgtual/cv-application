@@ -13,9 +13,10 @@ export default class InputForm extends Component {
             personalInfo,
             handlePersonalInfoChange,
             workExperience,
-            handleWorkExperienceChange,
-            addWorkExperience,
-            deleteWorkExperience
+            handleExperienceChange,
+            addExperienceOfType,
+            deleteExperienceOfType,
+            workExperienceType
         } = this.props
 
         return (
@@ -26,10 +27,11 @@ export default class InputForm extends Component {
                 {workExperience.map(entry => <WorkExperienceForm
                     key={entry.id}
                     experience={entry}
-                    handleChange={handleWorkExperienceChange}
-                    deleteEntry={deleteWorkExperience}
+                    handleChange={handleExperienceChange}
+                    deleteEntry={() => deleteExperienceOfType(workExperienceType)}
+                    experienceType={workExperienceType}
                 />)}
-                <button onClick={addWorkExperience}>Add Work Experience</button>
+                <button onClick={() => addExperienceOfType(workExperienceType)}>Add Work Experience</button>
                 <div className="formHeader">Education Experience</div>
                 <EducationExperienceForm />
             </div>

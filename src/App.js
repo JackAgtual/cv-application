@@ -19,9 +19,9 @@ export default class App extends Component {
     }
 
     this.handlePersonalInfoChange = this.handlePersonalInfoChange.bind(this)
-    this.handleWorkExperienceChange = this.handleWorkExperienceChange.bind(this)
-    this.addWorkExperience = this.addWorkExperience.bind(this)
-    this.deleteWorkExperience = this.deleteWorkExperience.bind(this)
+    this.handleExperienceChange = this.handleExperienceChange.bind(this)
+    this.addExperienceOfType = this.addExperienceOfType.bind(this)
+    this.deleteExperienceOfType = this.deleteExperienceOfType.bind(this)
   }
 
   handlePersonalInfoChange(e, prop) {
@@ -30,25 +30,26 @@ export default class App extends Component {
     this.setState(newState)
   }
 
-  handleWorkExperienceChange(e, prop) {
+  handleExperienceChange(e, experienceType, prop) {
     const newState = _.cloneDeep(this.state)
 
     // find correct exprience to edit (get correct id)
     const id = e.target.parentElement.dataset.id
-    for (let i = 0; i < newState.workExperience.length; i++) {
+    for (let i = 0; i < newState[experienceType].length; i++) {
 
-      if (newState.workExperience[i].id !== id) continue // only edit current id
+      if (newState[experienceType][i].id !== id) continue // only edit current id
 
       // update state
-      newState.workExperience[i][prop] = e.target.value
+      newState[experienceType][i][prop] = e.target.value
       break
     }
     this.setState(newState)
+    console.log(newState)
   }
 
-  addWorkExperience() {
+  addExperienceOfType(experienceType) {
     const newState = _.cloneDeep(this.state)
-    newState.workExperience.push({
+    newState[experienceType].push({
       id: uniqid(),
       title: '',
       company: '',
@@ -59,9 +60,9 @@ export default class App extends Component {
     this.setState(newState)
   }
 
-  deleteWorkExperience(id) {
+  deleteExperienceOfType(experienceType, id) {
     const newState = _.cloneDeep(this.state)
-    newState.workExperience = newState.workExperience.filter(experience => experience.id !== id)
+    newState[experienceType] = newState[experienceType].filter(experience => experience.id !== id)
     this.setState(newState)
   }
 
@@ -73,9 +74,10 @@ export default class App extends Component {
           personalInfo={personalInfo}
           handlePersonalInfoChange={this.handlePersonalInfoChange}
           workExperience={workExperience}
-          handleWorkExperienceChange={this.handleWorkExperienceChange}
-          addWorkExperience={this.addWorkExperience}
-          deleteWorkExperience={this.deleteWorkExperience}
+          handleExperienceChange={this.handleExperienceChange}
+          addExperienceOfType={this.addExperienceOfType}
+          deleteExperienceOfType={this.deleteExperienceOfType}
+          workExperienceType={'workExperience'}
         />
       </div>
     )

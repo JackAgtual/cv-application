@@ -6,7 +6,7 @@ export default class WorkExperienceForm extends Component {
     }
 
     render() {
-        const { experience, handleChange, deleteEntry } = this.props
+        const { experience, experienceType, handleChange, deleteEntry } = this.props
 
         return (
             <div>
@@ -16,35 +16,35 @@ export default class WorkExperienceForm extends Component {
                         type="text"
                         id="jobTitle"
                         value={experience.title}
-                        onChange={(e) => handleChange(e, 'title')}
+                        onChange={(e) => handleChange(e, experienceType, 'title')}
                     />
                     <label htmlFor="companyName">Company:</label>
                     <input
                         type="text"
                         id="companyName"
                         value={experience.company}
-                        onChange={(e) => handleChange(e, 'company')}
+                        onChange={(e) => handleChange(e, experienceType, 'company')}
                     />
                     <label htmlFor="from">From:</label>
                     <input
                         type="text"
                         id="from"
                         value={experience.from}
-                        onChange={(e) => handleChange(e, 'from')}
+                        onChange={(e) => handleChange(e, experienceType, 'from')}
                     />
                     <label htmlFor="to">To:</label>
                     <input
                         type="text"
                         id="to"
                         value={experience.to}
-                        onChange={(e) => handleChange(e, 'to')}
+                        onChange={(e) => handleChange(e, experienceType, 'to')}
                     />
                     <label htmlFor="description">Description:</label>
                     <input
                         type="text"
                         id="description"
                         value={experience.description}
-                        onChange={(e) => handleChange(e, 'description')}
+                        onChange={(e) => handleChange(e, experienceType, 'description')}
                     />
                 </form>
                 <button onClick={() => deleteEntry(experience.id)}>Delete</button>
