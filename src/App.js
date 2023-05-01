@@ -1,8 +1,9 @@
 import React, { Component } from "react"
 import './App.css';
-import InputForm from './components/InputForm';
 import _ from 'lodash'
 import uniqid from 'uniqid'
+import InputForm from './components/InputForm';
+import CV from './components/CV'
 
 export default class App extends Component {
   constructor() {
@@ -95,6 +96,7 @@ export default class App extends Component {
           workExperienceType={this.workExperienceType}
           educationExperienceType={this.educationExperienceType}
         />
+        <CV />
       </div>
     )
   }
