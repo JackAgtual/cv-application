@@ -11,39 +11,39 @@ export default class WorkExperienceForm extends Component {
         return (
             <div>
                 <form data-id={experience.id}>
-                    <label htmlFor="jobTitle">Title:</label>
                     <input
                         type="text"
                         id="jobTitle"
+                        placeholder="Job title"
                         value={experience.title}
                         onChange={(e) => handleChange(e, experienceType, 'title')}
                     />
-                    <label htmlFor="companyName">Company:</label>
                     <input
                         type="text"
                         id="companyName"
+                        placeholder="Company name"
                         value={experience.company}
                         onChange={(e) => handleChange(e, experienceType, 'company')}
                     />
-                    <label htmlFor="from">From:</label>
                     <input
                         type="text"
                         id="from"
+                        placeholder="Start date"
                         value={experience.from}
                         onChange={(e) => handleChange(e, experienceType, 'from')}
                     />
-                    <label htmlFor="to">To:</label>
                     <input
                         type="text"
                         id="to"
+                        placeholder="End date"
                         value={experience.to}
                         onChange={(e) => handleChange(e, experienceType, 'to')}
                     />
-                    <label htmlFor="description">Description:</label>
                     <textarea
                         type="text"
                         rows="4"
                         id="description"
+                        placeholder="Description"
                         value={experience.description}
                         onChange={(e) => handleChange(e, experienceType, 'description')}
                     />

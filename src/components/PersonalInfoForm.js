@@ -9,31 +9,31 @@ export default class PersonalInfoForm extends Component {
         const { personalInfo, handleChange } = this.props
         return (
             <form>
-                <label htmlFor="firstName">First Name:</label>
                 <input
                     type="text"
                     id="firstName"
+                    placeholder="First name"
                     value={personalInfo.firstName}
                     onChange={(e) => handleChange(e, 'firstName')}
                 />
-                <label htmlFor="lastName">Last Name:</label>
                 <input
                     type="text"
                     id="lastName"
+                    placeholder="Last name"
                     value={personalInfo.lastName}
                     onChange={(e) => handleChange(e, 'lastName')}
                 />
-                <label htmlFor="email">Email:</label>
                 <input
                     type="email"
                     id="email"
+                    placeholder="Email"
                     value={personalInfo.email}
                     onChange={(e) => handleChange(e, 'email')}
                 />
-                <label htmlFor="phoneNumber">Phone Number:</label>
                 <input
                     type="tel"
                     id="phoneNumber"
+                    placeholder="Phone number"
                     value={personalInfo.phoneNumber}
                     onChange={(e) => handleChange(e, 'phoneNumber')}
                 />

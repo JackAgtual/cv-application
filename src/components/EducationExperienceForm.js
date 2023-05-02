@@ -11,24 +11,24 @@ export default class EducationExperienceForm extends Component {
         return (
             <div>
                 <form data-id={experience.id}>
-                    <label htmlFor="schoolName">School:</label>
                     <input
                         type="text"
                         id="schoolName"
+                        placeholder="School name"
                         value={experience.school}
                         onChange={(e) => handleChange(e, experienceType, 'school')}
                     />
-                    <label htmlFor="degreeName">Degree:</label>
                     <input
                         type="text"
                         id="degreeName"
+                        placeholder="Degree"
                         value={experience.degree}
                         onChange={(e) => handleChange(e, experienceType, 'degree')}
                     />
-                    <label htmlFor="completionDate">Completion Date:</label>
                     <input
                         type="text"
                         id="completionDate"
+                        placeholder="Completion date"
                         value={experience.completionDate}
                         onChange={(e) => handleChange(e, experienceType, 'completionDate')}
                     />
