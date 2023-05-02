@@ -6,9 +6,13 @@ export default class CV extends Component {
     }
 
     render() {
+        const { personalInfo, workExperience, educationExperience } = this.props
         return (
             <div>
-                My CV
+                <div className="personalInfo">
+                    <div className="name">{`${personalInfo.firstName} ${personalInfo.lastName}`}</div>
+                    <div className="contact">{`${personalInfo.email} | ${personalInfo.phoneNumber}`}</div>
+                </div>
             </div>
         )
     }

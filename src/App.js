@@ -96,7 +96,11 @@ export default class App extends Component {
           workExperienceType={this.workExperienceType}
           educationExperienceType={this.educationExperienceType}
         />
-        <CV />
+        <CV
+          personalInfo={personalInfo}
+          workExperience={workExperience}
+          educationExperience={educationExperience}
+        />
       </div>
     )
   }
