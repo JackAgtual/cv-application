@@ -40,8 +40,9 @@ export default class WorkExperienceForm extends Component {
                         onChange={(e) => handleChange(e, experienceType, 'to')}
                     />
                     <label htmlFor="description">Description:</label>
-                    <input
+                    <textarea
                         type="text"
+                        rows="4"
                         id="description"
                         value={experience.description}
                         onChange={(e) => handleChange(e, experienceType, 'description')}

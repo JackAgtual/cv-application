@@ -23,7 +23,7 @@ export default class CV extends Component {
                                 <div className={CVCSS.experienceTitle}>{job.title}</div>
                                 <div>{`${job.from} - ${job.to}`}</div>
                                 <div className={CVCSS.companyName}>{job.company}</div>
-                                <div className={CVCSS.jobDescription}>{job.description}</div>
+                                <div className={CVCSS.jobDescription}>{job.description.split('\n').map(line => <div>{line}</div>)}</div>
                             </div>
                         )
                     })}
