@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import PersonalInfoForm from "./PersonalInfoForm"
 import WorkExperienceForm from "./WorkExperienceForm"
 import EducationExperienceForm from "./EducationExperienceForm"
+import FormCSS from '../styles/Form.module.css'
 
 export default class InputForm extends Component {
     constructor(props) {
@@ -22,10 +23,10 @@ export default class InputForm extends Component {
         } = this.props
 
         return (
-            <div>
-                <div className="formHeader">Personal Info</div>
+            <div className={FormCSS.masterForm}>
+                <div className={FormCSS.formHeader}>Personal Info</div>
                 <PersonalInfoForm personalInfo={personalInfo} handleChange={handlePersonalInfoChange} />
-                <div className="formHeader">Work Experience</div>
+                <div className={FormCSS.formHeader}>Work Experience</div>
                 {workExperience.map(entry => <WorkExperienceForm
                     key={entry.id}
                     experience={entry}
@@ -33,8 +34,8 @@ export default class InputForm extends Component {
                     deleteEntry={deleteExperienceOfType}
                     experienceType={workExperienceType}
                 />)}
-                <button onClick={() => addExperienceOfType(workExperienceType)}>Add Work Experience</button>
-                <div className="formHeader">Education Experience</div>
+                <button className={FormCSS.btn} onClick={() => addExperienceOfType(workExperienceType)}>Add Work Experience</button>
+                <div className={FormCSS.formHeader}>Education Experience</div>
                 {educationExperience.map(entry => <EducationExperienceForm
                     key={entry.id}
                     experience={entry}
@@ -42,7 +43,7 @@ export default class InputForm extends Component {
                     deleteEntry={deleteExperienceOfType}
                     experienceType={educationExperienceType}
                 />)}
-                <button onClick={() => addExperienceOfType(educationExperienceType)}>Add Education Experience</button>
+                <button className={FormCSS.btn} onClick={() => addExperienceOfType(educationExperienceType)}>Add Education Experience</button>
             </div>
         )
     }

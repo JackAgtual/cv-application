@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import FormCSS from '../styles/Form.module.css'
 
 export default class EducationExperienceForm extends Component {
     constructor(props) {
@@ -10,7 +11,7 @@ export default class EducationExperienceForm extends Component {
 
         return (
             <div>
-                <form data-id={experience.id}>
+                <form className={FormCSS.inputForm} data-id={experience.id}>
                     <input
                         type="text"
                         id="schoolName"
@@ -33,7 +34,7 @@ export default class EducationExperienceForm extends Component {
                         onChange={(e) => handleChange(e, experienceType, 'completionDate')}
                     />
                 </form>
-                <button onClick={() => deleteEntry(experienceType, experience.id)}>Delete</button>
+                <button className={FormCSS.btn} onClick={() => deleteEntry(experienceType, experience.id)}>Delete</button>
             </div>
         )
     }

@@ -3,13 +3,3 @@
   flex-direction: column;
   justify-content: center;
 }
-
-form {
-  display: flex;
-  flex-direction: column;
-}
-
-
-.formHeader {
-  font-size: 1.5rem;
-}

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import FormCSS from '../styles/Form.module.css'
 export default class PersonalInfoForm extends Component {
     constructor(props) {
         super(props)
@@ -8,7 +8,7 @@ export default class PersonalInfoForm extends Component {
     render() {
         const { personalInfo, handleChange } = this.props
         return (
-            <form>
+            <form className={FormCSS.inputForm}>
                 <input
                     type="text"
                     id="firstName"

@@ -1,0 +1,32 @@
+.masterForm {
+    width: 50vw;
+    min-width: 300px;
+    align-self: center;
+    border: 1px solid black;
+    padding: 2rem 3rem;
+    background-color: rgb(227, 227, 227);
+    margin-top: 1rem;
+}
+
+.inputForm {
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.formHeader {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.btn {
+    width: 100%;
+    padding: 0.5rem 0;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 3px;
+    background-color: rgb(57, 57, 57);
+    color: aliceblue;
+    font-weight: bold;
+}
