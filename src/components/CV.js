@@ -25,6 +25,17 @@ export default class CV extends Component {
                         )
                     })}
                 </div>
+                <div className="educationExperience">
+                    {educationExperience.map(school => {
+                        return (
+                            <div className="education">
+                                <div className="schoolName">{school.school}</div>
+                                <div className="degree">{school.degree}</div>
+                                <div className="completionDate">{school.completionDate}</div>
+                            </div>
+                        )
+                    })}
+                </div>
             </div>
         )
     }
