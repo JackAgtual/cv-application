@@ -1,8 +1,8 @@
-import React, { Component } from "react"
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
 import _ from 'lodash'
 import uniqid from 'uniqid'
-import InputForm from './components/InputForm';
+import InputForm from './components/InputForm'
 import CV from './components/CV'
 
 export default class App extends Component {
@@ -14,10 +14,10 @@ export default class App extends Component {
         firstName: '',
         lastName: '',
         email: '',
-        phoneNumber: ''
+        phoneNumber: '',
       },
       workExperience: [],
-      educationExperience: []
+      educationExperience: [],
     }
 
     this.workExperienceType = 'workExperience'
@@ -41,7 +41,6 @@ export default class App extends Component {
     // find correct exprience to edit (get correct id)
     const id = e.target.parentElement.dataset.id
     for (let i = 0; i < newState[experienceType].length; i++) {
-
       if (newState[experienceType][i].id !== id) continue // only edit current id
 
       // update state
@@ -61,14 +60,14 @@ export default class App extends Component {
         company: '',
         from: '',
         to: '',
-        description: ''
+        description: '',
       })
     } else if (experienceType === this.educationExperienceType) {
       newState[experienceType].push({
         id: uniqid(),
         school: '',
         degree: '',
-        completionDate: ''
+        completionDate: '',
       })
     } else console.error(`Invalid experience type: ${experienceType}`)
 
@@ -77,14 +76,16 @@ export default class App extends Component {
 
   deleteExperienceOfType(experienceType, id) {
     const newState = _.cloneDeep(this.state)
-    newState[experienceType] = newState[experienceType].filter(experience => experience.id !== id)
+    newState[experienceType] = newState[experienceType].filter(
+      (experience) => experience.id !== id
+    )
     this.setState(newState)
   }
 
   render() {
     const { personalInfo, workExperience, educationExperience } = this.state
     return (
-      <div className="App" >
+      <div className="App">
         <InputForm
           personalInfo={personalInfo}
           handlePersonalInfoChange={this.handlePersonalInfoChange}
