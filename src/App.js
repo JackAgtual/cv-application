@@ -1,108 +1,114 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import './App.css'
 import _ from 'lodash'
 import uniqid from 'uniqid'
 import InputForm from './components/InputForm'
 import CV from './components/CV'
 
-export default class App extends Component {
-  constructor() {
-    super()
+export default function App() {
+  const [personalInfo, setPersonalInfo] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phoneNumber: '',
+  })
 
-    this.state = {
-      personalInfo: {
-        firstName: '',
-        lastName: '',
-        email: '',
-        phoneNumber: '',
-      },
-      workExperience: [],
-      educationExperience: [],
-    }
+  const [workExperience, setWorkExperience] = useState([])
+  const [educationExperience, setEducationExperience] = useState([])
 
-    this.workExperienceType = 'workExperience'
-    this.educationExperienceType = 'educationExperience'
+  const workExperienceType = 'workExperience'
+  const educationExperienceType = 'educationExperience'
 
-    this.handlePersonalInfoChange = this.handlePersonalInfoChange.bind(this)
-    this.handleExperienceChange = this.handleExperienceChange.bind(this)
-    this.addExperienceOfType = this.addExperienceOfType.bind(this)
-    this.deleteExperienceOfType = this.deleteExperienceOfType.bind(this)
+  function handlePersonalInfoChange(e, prop) {
+    setPersonalInfo((prevPersonalInfo) => {
+      return { ...prevPersonalInfo, [prop]: e.target.value }
+    })
   }
 
-  handlePersonalInfoChange(e, prop) {
-    const newState = _.cloneDeep(this.state)
-    newState.personalInfo[prop] = e.target.value
-    this.setState(newState)
-  }
+  function handleExperienceChange(e, experienceType, prop) {
+    if (experienceType === 'workExperience') {
+      setWorkExperience((prevWorkExperience) => {
+        const updatedWorkExperience = [...prevWorkExperience]
+        // find correct exprience to edit (get correct id)
+        const id = e.target.parentElement.dataset.id
+        for (let i = 0; i < updatedWorkExperience.length; i++) {
+          if (updatedWorkExperience[i].id !== id) continue // only edit current id
 
-  handleExperienceChange(e, experienceType, prop) {
-    const newState = _.cloneDeep(this.state)
-
-    // find correct exprience to edit (get correct id)
-    const id = e.target.parentElement.dataset.id
-    for (let i = 0; i < newState[experienceType].length; i++) {
-      if (newState[experienceType][i].id !== id) continue // only edit current id
-
-      // update state
-      newState[experienceType][i][prop] = e.target.value
-      break
-    }
-    this.setState(newState)
-  }
-
-  addExperienceOfType(experienceType) {
-    const newState = _.cloneDeep(this.state)
-
-    if (experienceType === this.workExperienceType) {
-      newState[experienceType].push({
-        id: uniqid(),
-        title: '',
-        company: '',
-        from: '',
-        to: '',
-        description: '',
+          // update state
+          updatedWorkExperience[i][prop] = e.target.value
+          return updatedWorkExperience
+        }
       })
-    } else if (experienceType === this.educationExperienceType) {
-      newState[experienceType].push({
-        id: uniqid(),
-        school: '',
-        degree: '',
-        completionDate: '',
+    } else if (experienceType === 'educationExperience') {
+      setEducationExperience((prevEducationExperience) => {
+        const updatedEducationExperience = [...prevEducationExperience]
+        // find correct exprience to edit (get correct id)
+        const id = e.target.parentElement.dataset.id
+        for (let i = 0; i < updatedEducationExperience.length; i++) {
+          if (updatedEducationExperience[i].id !== id) continue // only edit current id
+
+          // update state
+          updatedEducationExperience[i][prop] = e.target.value
+          return updatedEducationExperience
+        }
       })
+    }
+  }
+
+  function addExperienceOfType(experienceType) {
+    if (experienceType === workExperienceType) {
+      setWorkExperience((prevWorkExperience) =>
+        prevWorkExperience.concat({
+          id: uniqid(),
+          title: '',
+          company: '',
+          from: '',
+          to: '',
+          description: '',
+        })
+      )
+    } else if (experienceType === educationExperienceType) {
+      setEducationExperience((prevEducationExperience) =>
+        prevEducationExperience.concat({
+          id: uniqid(),
+          school: '',
+          degree: '',
+          completionDate: '',
+        })
+      )
     } else console.error(`Invalid experience type: ${experienceType}`)
-
-    this.setState(newState)
   }
 
-  deleteExperienceOfType(experienceType, id) {
-    const newState = _.cloneDeep(this.state)
-    newState[experienceType] = newState[experienceType].filter(
-      (experience) => experience.id !== id
-    )
-    this.setState(newState)
+  function deleteExperienceOfType(experienceType, id) {
+    if (experienceType === 'workExperience') {
+      setWorkExperience((prevWorkExperience) => {
+        return prevWorkExperience.filter((experience) => experience.id !== id)
+      })
+    } else if (experienceType === 'educationExperience') {
+      setEducationExperience((prevEducationExperience) => {
+        return prevEducationExperience.filter((experience) => experience.id !== id)
+      })
+    }
   }
 
-  render() {
-    const { personalInfo, workExperience, educationExperience } = this.state
-    return (
-      <div className="App">
-        <InputForm
-          personalInfo={personalInfo}
-          handlePersonalInfoChange={this.handlePersonalInfoChange}
-          workExperience={workExperience}
-          educationExperience={educationExperience}
-          handleExperienceChange={this.handleExperienceChange}
-          addExperienceOfType={this.addExperienceOfType}
-          deleteExperienceOfType={this.deleteExperienceOfType}
-          workExperienceType={this.workExperienceType}
-          educationExperienceType={this.educationExperienceType}
-        />
-        <CV
-          personalInfo={personalInfo}
-          workExperience={workExperience}
-          educationExperience={educationExperience}
-        />
-      </div>
-    )
-  }
+  return (
+    <div className="App">
+      <InputForm
+        personalInfo={personalInfo}
+        handlePersonalInfoChange={handlePersonalInfoChange}
+        workExperience={workExperience}
+        educationExperience={educationExperience}
+        handleExperienceChange={handleExperienceChange}
+        addExperienceOfType={addExperienceOfType}
+        deleteExperienceOfType={deleteExperienceOfType}
+        workExperienceType={workExperienceType}
+        educationExperienceType={educationExperienceType}
+      />
+      <CV
+        personalInfo={personalInfo}
+        workExperience={workExperience}
+        educationExperience={educationExperience}
+      />
+    </div>
+  )
 }
