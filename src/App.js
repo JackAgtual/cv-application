@@ -75,15 +75,19 @@ export default function App() {
     } else console.error(`Invalid experience type: ${experienceType}`)
   }
 
+  function removeTargetArrayElement(experienceArray, targetId) {
+    return experienceArray.filter((experience) => experience.id !== targetId)
+  }
+
   function deleteExperienceOfType(experienceType, id) {
     if (experienceType === 'workExperience') {
-      setWorkExperience((prevWorkExperience) => {
-        return prevWorkExperience.filter((experience) => experience.id !== id)
-      })
+      setWorkExperience((prevWorkExperience) =>
+        removeTargetArrayElement(prevWorkExperience, id)
+      )
     } else if (experienceType === 'educationExperience') {
-      setEducationExperience((prevEducationExperience) => {
-        return prevEducationExperience.filter((experience) => experience.id !== id)
-      })
+      setEducationExperience((prevEducationExperience) =>
+        removeTargetArrayElement(prevEducationExperience, id)
+      )
     }
   }
 
