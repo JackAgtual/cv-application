@@ -25,33 +25,29 @@ export default function App() {
     })
   }
 
+  function modifyTargetArrayElement(e, prop, previousExperience) {
+    const updatedExperience = [...previousExperience]
+
+    // find correct experience to edit (get correct id)
+    const id = e.target.parentElement.dataset.id
+    for (let i = 0; i < updatedExperience.length; i++) {
+      if (updatedExperience[i].id !== id) continue // only edit current id
+
+      // update state
+      updatedExperience[i][prop] = e.target.value
+      return updatedExperience
+    }
+  }
+
   function handleExperienceChange(e, experienceType, prop) {
     if (experienceType === 'workExperience') {
-      setWorkExperience((prevWorkExperience) => {
-        const updatedWorkExperience = [...prevWorkExperience]
-        // find correct exprience to edit (get correct id)
-        const id = e.target.parentElement.dataset.id
-        for (let i = 0; i < updatedWorkExperience.length; i++) {
-          if (updatedWorkExperience[i].id !== id) continue // only edit current id
-
-          // update state
-          updatedWorkExperience[i][prop] = e.target.value
-          return updatedWorkExperience
-        }
-      })
+      setWorkExperience((prevWorkExperience) =>
+        modifyTargetArrayElement(e, prop, prevWorkExperience)
+      )
     } else if (experienceType === 'educationExperience') {
-      setEducationExperience((prevEducationExperience) => {
-        const updatedEducationExperience = [...prevEducationExperience]
-        // find correct exprience to edit (get correct id)
-        const id = e.target.parentElement.dataset.id
-        for (let i = 0; i < updatedEducationExperience.length; i++) {
-          if (updatedEducationExperience[i].id !== id) continue // only edit current id
-
-          // update state
-          updatedEducationExperience[i][prop] = e.target.value
-          return updatedEducationExperience
-        }
-      })
+      setEducationExperience((prevEducationExperience) =>
+        modifyTargetArrayElement(e, prop, prevEducationExperience)
+      )
     }
   }
 
